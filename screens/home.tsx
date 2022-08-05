@@ -1,6 +1,6 @@
 import { KeyboardAvoidingView, Platform, TouchableOpacity, SafeAreaView, StyleSheet, Text, View, FlatList, TextInput } from 'react-native';
 import { HomeProps } from './home.props';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export const Home: React.FC<HomeProps> = () => {
 
@@ -20,29 +20,56 @@ export const Home: React.FC<HomeProps> = () => {
   ]
 
   const [data, setData] = useState(initialData)
-  const [text, onChangeText] = useState("")
+  const [text, setText] = useState("")
+  const [button, setButton] = useState("ADD")
+  const [updateID, setUpdateID] = useState(0)
 
-  const addTodoList = () => {
-    const specificId = Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString()
-    console.log(specificId)
-    setData([...data, { title: text, id: specificId }])
+  const addAndUpdateTodoList = () => {
+    if (button === "ADD") {
+      const specificId = Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString()
+      console.log(specificId)
+      setData([...data, { title: text, id: specificId }])
+      setText("")
+    } else {
+      const newData = data.map(item => {
+        if (item.id == updateID) {
+          return { title: text, id: updateID }
+        }
+        return item;
+      });
+      setData(newData);
+      setText("")
+      setButton("ADD")
+    }
   }
   const removeTodoList = (id) => {
     setData(data => data.filter((data) => data.id !== id))
+    setButton("ADD")
+  }
+  const updateTodoList = (id) => {
+    const datas = data.filter((data) => data.id == id)
+    console.log(datas[0].title)
+    setText(datas[0].title)
+    setButton("UPDATE")
+    setUpdateID(datas[0].id)
+    console.log(updateID)
   }
 
+
   const renderItem = ({ item }) => (
-    <View style={styles.listOuter}>
-      <View style={styles.listLeft}>
-        <View style={styles.textOuter}>
-          <View style={styles.textIcon}></View>
-          <Text style={styles.text}>{item.title}</Text>
+    <TouchableOpacity onPress={() => updateTodoList(item.id)} >
+      <View style={styles.listOuter}>
+        <View style={styles.listLeft}>
+          <View style={styles.textOuter}>
+            <View style={styles.textIcon}></View>
+            <Text style={styles.text}>{item.title}</Text>
+          </View>
         </View>
+        <TouchableOpacity onPress={() => removeTodoList(item.id)} >
+          <Text>REMOVE</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => removeTodoList(item.id)} >
-        <Text>REMOVE</Text>
-      </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   )
 
   return (
@@ -68,18 +95,15 @@ export const Home: React.FC<HomeProps> = () => {
             placeholder="Enter here"
             value={text}
             placeholderTextColor="#666"
-            onChangeText={text => onChangeText(text)}
+            onChangeText={text => setText(text)}
           />
-          <TouchableOpacity onPress={() => addTodoList()} >
+          <TouchableOpacity onPress={() => addAndUpdateTodoList()} >
             <View style={styles.addButton}>
-              <Text style={styles.addText}>ADD</Text>
+              <Text style={styles.addText}>{button}</Text>
             </View>
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </View>
-
-
-
     </SafeAreaView>
   );
 }
@@ -98,11 +122,8 @@ const styles = StyleSheet.create({
     color: '#0145A6',
   },
   titleOuter: {
-    marginBottom: 20,
+    marginVertical: 20,
   },
-
-
-
   listOuter: {
     backgroundColor: '#fff',
     padding: 18,
