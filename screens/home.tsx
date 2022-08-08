@@ -37,15 +37,16 @@ import { FontAwesome } from '@expo/vector-icons';
     setData(data => data.filter((data) => data.id !== id))
     setButton("ADD")
   }
-  const updateTodoList = (id) => {
-    const datas = data.filter((data) => data.id == id)
-    console.log(datas[0].title)
-    setText(datas[0].title)
-    setButton("UPDATE")
-    setUpdateID(datas[0].id)
-    console.log(updateID)
   }
 
+  const updateTodoList = (id: number) => {
+    const item = data.find((data) => data.id == id);
+    if (item) {
+      setButton("UPDATE")
+      setText(item.title)
+      setUpdateID(item.id)
+    }
+  }
 
   const renderItem = ({ item }: ListRenderItemInfo<ItemType>) => (
     <TouchableOpacity onPress={() => updateTodoList(item.id)} >
