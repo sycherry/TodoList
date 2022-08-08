@@ -8,12 +8,17 @@ import { AddAndUpdate } from '../components/addAndUpdate'
 
 export const Home: FC<HomeProps> = () => {
 
+  type Todo = {
+    id: number;
+    title: string;
 
-  const [data, setData] = useState(initialData)
-  const [text, setText] = useState("")
-  const [button, setButton] = useState("ADD")
-  const [updateID, setUpdateID] = useState(0)
-import { FontAwesome } from '@expo/vector-icons';
+  }
+  type Mode = "ADD" | "UPDATE";
+
+  const [data, setData] = useState<Todo[]>(initialData)
+  const [text, setText] = useState<string>("")
+  const [button, setButton] = useState<Mode>("ADD")
+  const [updateID, setUpdateID] = useState<number>(0)
 
   const addAndUpdateTodoList = () => {
     console.log("test")
