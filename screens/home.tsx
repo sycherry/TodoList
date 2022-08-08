@@ -2,6 +2,7 @@ import { KeyboardAvoidingView, Platform, TouchableOpacity, SafeAreaView, StyleSh
 import { HomeProps } from './home.props';
 import { useState } from 'react'
 import { initialData } from './initialData';
+import { ItemType } from '../models/ItemType';
 import { AddAndUpdate } from '../components/addAndUpdate'
 
 export const Home: React.FC<HomeProps> = () => {
@@ -45,19 +46,23 @@ import { FontAwesome } from '@expo/vector-icons';
   }
 
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }: ListRenderItemInfo<ItemType>) => (
     <TouchableOpacity onPress={() => updateTodoList(item.id)} >
       <View style={styles.listOuter}>
+
         <View style={styles.listLeft}>
           <View style={styles.textOuter}>
             <View style={styles.textIcon}></View>
             <Text style={styles.text}>{item.title}</Text>
           </View>
         </View>
+
         <TouchableOpacity onPress={() => removeTodoList(item.id)} >
           <Text><FontAwesome name="trash-o" size={24} color="#999" /></Text>
         </TouchableOpacity>
+
       </View>
+
     </TouchableOpacity>
   )
 
