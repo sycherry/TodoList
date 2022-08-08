@@ -2,6 +2,7 @@ import { KeyboardAvoidingView, Platform, TouchableOpacity, SafeAreaView, StyleSh
 import { HomeProps } from './home.props';
 import { useState } from 'react'
 import { initialData } from './initialData';
+import { AddAndUpdate } from '../components/addAndUpdate'
 
 export const Home: React.FC<HomeProps> = () => {
 
@@ -74,24 +75,6 @@ import { FontAwesome } from '@expo/vector-icons';
       </View>
 
 
-      <View style={styles.footerWrap}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.inputOuter}
-        >
-          <TextInput style={styles.input}
-            placeholder="Enter here"
-            value={text}
-            placeholderTextColor="#666"
-            onChangeText={text => setText(text)}
-          />
-          <TouchableOpacity onPress={() => addAndUpdateTodoList()} >
-            <View style={styles.addButton}>
-              <Text style={styles.addText}>{button}</Text>
-            </View>
-          </TouchableOpacity>
-        </KeyboardAvoidingView>
-      </View>
     </SafeAreaView>
   );
 }
@@ -138,41 +121,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     color: '#666',
-
+    borderBottomColor: '#666',
   },
-  footerWrap: {
-    backgroundColor: '#ccc',
-    position: 'absolute',
-    bottom: 0,
-    paddingTop: 20,
-    paddingBottom: 40,
-    paddingHorizontal: 10,
+  block: {
+    height: 280,
   },
-  inputOuter: {
-    flexDirection: 'row',
-  },
-  input: {
-    fontSize: 16,
-    color: "#000",
-    paddingVertical: 28,
-    paddingRight: 120,
-    paddingLeft: 20,
-    backgroundColor: '#FFF',
-    borderRadius: 18,
-    width: '100%',
-    position: 'relative'
-  },
-  addButton: {
-    position: 'absolute',
-    right: 10,
-    top: 10,
-    paddingVertical: 18,
-    paddingHorizontal: 30,
-    backgroundColor: '#0145A6',
-    borderRadius: 20,
-  },
-  addText: {
-    fontWeight: 'bold',
-    color: '#fff'
-  }
 });
