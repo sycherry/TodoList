@@ -19,6 +19,11 @@ export const Home: FC<HomeProps> = () => {
   const [text, setText] = useState<string>("")
   const [button, setButton] = useState<Mode>("ADD")
   const [updateID, setUpdateID] = useState<number>(0)
+  const [disabled, setDisabled] = useState<boolean>(true)
+
+  useEffect(() => {
+    setDisabled(!text)
+  }, [text])
 
   const addAndUpdateTodoList = () => {
     console.log("test")
