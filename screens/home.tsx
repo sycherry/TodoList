@@ -79,6 +79,7 @@ import { FontAwesome } from '@expo/vector-icons';
           renderItem={renderItem}
           keyExtractor={item => item.id}
         ></FlatList>
+          ListFooterComponent={<View style={styles.block} />}
       </View>
 
       <AddAndUpdate
@@ -99,15 +100,15 @@ const styles = StyleSheet.create({
   },
   row: {
     paddingHorizontal: 15,
-    paddingBottom: 160,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#0145A6',
   },
   titleOuter: {
-    marginVertical: 20,
+    marginTop: 60,
+    marginBottom: 20,
   },
   listOuter: {
     backgroundColor: '#fff',
