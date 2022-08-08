@@ -23,6 +23,7 @@ export const Home: React.FC<HomeProps> = () => {
   const [text, setText] = useState("")
   const [button, setButton] = useState("ADD")
   const [updateID, setUpdateID] = useState(0)
+import { FontAwesome } from '@expo/vector-icons';
 
   const addAndUpdateTodoList = () => {
     if (button === "ADD") {
@@ -66,7 +67,7 @@ export const Home: React.FC<HomeProps> = () => {
           </View>
         </View>
         <TouchableOpacity onPress={() => removeTodoList(item.id)} >
-          <Text>REMOVE</Text>
+          <Text><FontAwesome name="trash-o" size={24} color="#999" /></Text>
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
