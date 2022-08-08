@@ -1,11 +1,12 @@
-import { KeyboardAvoidingView, Platform, TouchableOpacity, SafeAreaView, StyleSheet, Text, View, FlatList, TextInput } from 'react-native';
+import React, { FC, useState, useEffect } from 'react'
+import { TouchableOpacity, SafeAreaView, StyleSheet, Text, View, FlatList, ListRenderItemInfo } from 'react-native';
 import { HomeProps } from './home.props';
 import { useState } from 'react'
 import { initialData } from './initialData';
 import { ItemType } from '../models/ItemType';
 import { AddAndUpdate } from '../components/addAndUpdate'
 
-export const Home: React.FC<HomeProps> = () => {
+export const Home: FC<HomeProps> = () => {
 
 
   const [data, setData] = useState(initialData)
