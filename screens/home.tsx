@@ -16,11 +16,11 @@ export const Home: FC<HomeProps> = () => {
 import { FontAwesome } from '@expo/vector-icons';
 
   const addAndUpdateTodoList = () => {
+    console.log("test")
     if (button === "ADD") {
-      const specificId = Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString()
-      console.log(specificId)
+      const specificId = Number(Date.now() + (Math.random() * 1e6).toFixed(0))
+      console.log("test",specificId)
       setData([...data, { title: text, id: specificId }])
-      setText("")
     } else {
       const newData = data.map(item => {
         if (item.id == updateID) {
@@ -29,9 +29,9 @@ import { FontAwesome } from '@expo/vector-icons';
         return item;
       });
       setData(newData);
-      setText("")
       setButton("ADD")
     }
+    setText("")
   }
   const removeTodoList = (id) => {
     setData(data => data.filter((data) => data.id !== id))
