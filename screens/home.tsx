@@ -74,6 +74,13 @@ import { FontAwesome } from '@expo/vector-icons';
         ></FlatList>
       </View>
 
+      <AddAndUpdate
+        text={text}
+        onChangeText={onChangeText}
+        disabled={disabled}
+        button={button}
+        addAndUpdateTodoList={addAndUpdateTodoList}
+      />
 
     </SafeAreaView>
   );
