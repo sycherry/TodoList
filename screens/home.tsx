@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect } from 'react'
 import { TouchableOpacity, SafeAreaView, StyleSheet, Text, View, FlatList, ListRenderItemInfo } from 'react-native';
 import { HomeProps } from './home.props';
-import { useState } from 'react'
 import { initialData } from './initialData';
 import { ItemType } from '../models/ItemType';
+import { FontAwesome } from '@expo/vector-icons';
 import { AddAndUpdate } from '../components/addAndUpdate'
 
 export const Home: FC<HomeProps> = () => {
@@ -25,6 +25,10 @@ export const Home: FC<HomeProps> = () => {
     setDisabled(!text)
   }, [text])
 
+  const onChangeText = (text: any) => {
+    setText(text)
+  }
+
   const addAndUpdateTodoList = () => {
     console.log("test")
     if (button === "ADD") {
@@ -43,10 +47,9 @@ export const Home: FC<HomeProps> = () => {
     }
     setText("")
   }
-  const removeTodoList = (id) => {
+
+  const removeTodoList = (id: number) => {
     setData(data => data.filter((data) => data.id !== id))
-    setButton("ADD")
-  }
   }
 
   const updateTodoList = (id: number) => {
@@ -79,17 +82,17 @@ export const Home: FC<HomeProps> = () => {
   )
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView testID="todo" style={styles.container}>
       <View style={styles.row}>
-        <View style={styles.titleOuter}>
-          <Text style={styles.title}>TODO:</Text>
-        </View>
+
+        <View style={styles.titleOuter}><Text style={styles.title}>TODO:</Text></View>
         <FlatList
           data={data}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
-        ></FlatList>
+          keyExtractor={item => item.id.toString()}
           ListFooterComponent={<View style={styles.block} />}
+        />
+
       </View>
 
       <AddAndUpdate
