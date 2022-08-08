@@ -1,23 +1,10 @@
 import { KeyboardAvoidingView, Platform, TouchableOpacity, SafeAreaView, StyleSheet, Text, View, FlatList, TextInput } from 'react-native';
 import { HomeProps } from './home.props';
 import { useState } from 'react'
+import { initialData } from './initialData';
 
 export const Home: React.FC<HomeProps> = () => {
 
-  const initialData = [
-    {
-      title: 'First Item',
-      id: 1
-    },
-    {
-      title: 'Second Item',
-      id: 2
-    },
-    {
-      title: 'Third Item',
-      id: 3
-    },
-  ]
 
   const [data, setData] = useState(initialData)
   const [text, setText] = useState("")
