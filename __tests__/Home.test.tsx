@@ -11,6 +11,7 @@ describe("Home screens test", () => {
     const input = getByTestId('input')
     fireEvent.changeText(input, text)
     const button = getByTestId('button')
+
     expect(button).toBeDisabled
   });
 
@@ -20,8 +21,8 @@ describe("Home screens test", () => {
     const input = getByTestId('input')
     fireEvent.changeText(input, text)
     const button = getByTestId('button')
+
     expect(button).toBeEnabled
-    expect(button).toHaveTextContent('ADD');
   });
 
   it("User create one item", async () => {
@@ -32,7 +33,10 @@ describe("Home screens test", () => {
     fireEvent.changeText(input, text)
     fireEvent.press(button)
     const forthList = getAllByTestId('list')[3]
+
     expect(forthList).toHaveTextContent('Forth Item');
+    expect(button).toHaveTextContent('ADD');
+    expect(button).toBeDisabled
   });
 
   it("User create two items", async () => {
@@ -52,12 +56,15 @@ describe("Home screens test", () => {
 
     expect(forthList).toHaveTextContent('Forth Item');
     expect(fifthList).toHaveTextContent('Fifth Item');
+    expect(button).toHaveTextContent('ADD');
+    expect(button).toBeDisabled
   });
 
   it("User remove first item", async () => {
     const { getAllByTestId, queryByText } = render(<Home />)
     const removeButton = getAllByTestId('delete')[0]
     fireEvent.press(removeButton);
+    
     expect(queryByText('First Item')).toBeNull();
   });
 
@@ -70,6 +77,7 @@ describe("Home screens test", () => {
     fireEvent.press(button)
     const removeButton = getAllByTestId('delete')[3]
     fireEvent.press(removeButton);
+
     expect(queryByText('Forth Item')).toBeNull();
   });
 
@@ -88,6 +96,8 @@ describe("Home screens test", () => {
     fireEvent.press(button)
 
     expect(firstList).toHaveTextContent('First Item Updated');
+    expect(button).toHaveTextContent('ADD');
+    expect(button).toBeDisabled
   });
 
 
@@ -112,6 +122,8 @@ describe("Home screens test", () => {
     fireEvent.press(button)
 
     expect(forthList).toHaveTextContent('Forth Item Updated');
+    expect(button).toHaveTextContent('ADD');
+    expect(button).toBeDisabled
   });
 
 });
