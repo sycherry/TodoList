@@ -19,10 +19,11 @@ export const Home: FC<HomeProps> = () => {
   const [text, setText] = useState<string>("")
   const [button, setButton] = useState<Mode>("ADD")
   const [updateID, setUpdateID] = useState<number>(0)
-  const [disabled, setDisabled] = useState<boolean>(true)
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
+  const [updateDisabled, setUpdateDisabled] = useState<boolean>(false)
 
   useEffect(() => {
-    setDisabled(!text)
+    setButtonDisabled(!text)
   }, [text])
 
   const onChangeText = (text: any) => {
@@ -30,10 +31,8 @@ export const Home: FC<HomeProps> = () => {
   }
 
   const addAndUpdateTodoList = () => {
-    console.log("test")
     if (button === "ADD") {
       const specificId = Number(Date.now() + (Math.random() * 1e6).toFixed(0))
-      console.log("test",specificId)
       setData([...data, { title: text, id: specificId }])
     } else {
       const newData = data.map(item => {
@@ -44,6 +43,7 @@ export const Home: FC<HomeProps> = () => {
       });
       setData(newData);
       setButton("ADD")
+      setUpdateDisabled(false)
     }
     setText("")
   }
@@ -58,11 +58,12 @@ export const Home: FC<HomeProps> = () => {
       setButton("UPDATE")
       setText(item.title)
       setUpdateID(item.id)
+      setUpdateDisabled(true)
     }
   }
 
   const renderItem = ({ item }: ListRenderItemInfo<ItemType>) => (
-    <TouchableOpacity testID="list" onPress={() => updateTodoList(item.id)} >
+    <TouchableOpacity testID="list"  disabled={updateDisabled} onPress={() => updateTodoList(item.id)} >
       <View style={styles.listOuter}>
 
         <View style={styles.listLeft}>
@@ -72,7 +73,7 @@ export const Home: FC<HomeProps> = () => {
           </View>
         </View>
 
-        <TouchableOpacity testID="delete" onPress={() => removeTodoList(item.id)} >
+        <TouchableOpacity disabled={updateDisabled} testID="delete" onPress={() => removeTodoList(item.id)} >
           <Text><FontAwesome name="trash-o" size={24} color="#999" /></Text>
         </TouchableOpacity>
 
@@ -98,7 +99,7 @@ export const Home: FC<HomeProps> = () => {
       <AddAndUpdate
         text={text}
         onChangeText={onChangeText}
-        disabled={disabled}
+        disabled={buttonDisabled}
         button={button}
         addAndUpdateTodoList={addAndUpdateTodoList}
       />
