@@ -12,6 +12,7 @@ export function AddAndUpdate(props: AddAndUpdateProps) {
                 <View style={styles.colset}>
                     <View style={styles.col1}>
                         <TextInput
+                            testID="input"
                             style={styles.input}
                             onChangeText={text => onChangeText(text)}
                             value={text} placeholder="Enter here"
@@ -20,6 +21,7 @@ export function AddAndUpdate(props: AddAndUpdateProps) {
 
                     <View style={styles.col2}>
                         <TouchableOpacity
+                            testID="button"
                             disabled={disabled}
                             style={[styles.addButton, disabled ? styles.addButtonDisabled : null]}
                             onPress={() => addAndUpdateTodoList()}>

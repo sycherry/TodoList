@@ -81,7 +81,7 @@ describe("Home screens test", () => {
 
     const button = getByTestId('button')
     expect(button).toHaveTextContent('UPDATE');
-    
+
     const updateInput = getByTestId('input')
     const updateText = 'First Item Updated'
     fireEvent.changeText(updateInput, updateText)
@@ -92,7 +92,7 @@ describe("Home screens test", () => {
 
 
   it("User create and forth item and update it", async () => {
-    const { getByTestId, getAllByTestId,getByText } = render(<Home />)
+    const { getByTestId, getAllByTestId, getByText } = render(<Home />)
 
     const text = 'Forth Item'
     const input = getByTestId('input')
