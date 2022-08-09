@@ -62,17 +62,17 @@ export const Home: FC<HomeProps> = () => {
   }
 
   const renderItem = ({ item }: ListRenderItemInfo<ItemType>) => (
-    <TouchableOpacity onPress={() => updateTodoList(item.id)} >
+    <TouchableOpacity testID="list" onPress={() => updateTodoList(item.id)} >
       <View style={styles.listOuter}>
 
         <View style={styles.listLeft}>
           <View style={styles.textOuter}>
             <View style={styles.textIcon}></View>
-            <Text style={styles.text}>{item.title}</Text>
+            <Text testID="text" style={styles.text}>{item.title}</Text>
           </View>
         </View>
 
-        <TouchableOpacity onPress={() => removeTodoList(item.id)} >
+        <TouchableOpacity testID="delete" onPress={() => removeTodoList(item.id)} >
           <Text><FontAwesome name="trash-o" size={24} color="#999" /></Text>
         </TouchableOpacity>
 
@@ -82,7 +82,7 @@ export const Home: FC<HomeProps> = () => {
   )
 
   return (
-    <SafeAreaView testID="todo" style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.row}>
 
         <View style={styles.titleOuter}><Text style={styles.title}>TODO:</Text></View>
