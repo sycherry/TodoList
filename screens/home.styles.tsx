@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { palette } from "../styles/color"
 
 export const styles = StyleSheet.create({
   container: {
@@ -10,15 +11,15 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#0145A6',
+    color: palette.blue,
   },
   titleOuter: {
     marginTop: 60,
     marginBottom: 20,
   },
   listOuter: {
-    backgroundColor: '#fff',
-    padding: 18,
+    backgroundColor: palette.white,
+    paddingLeft: 18,
     borderRadius: 20,
     flexDirection: 'row',
     alignItems: 'center',
@@ -35,14 +36,14 @@ export const styles = StyleSheet.create({
   textIcon: {
     width: 24,
     height: 24,
-    backgroundColor: '#0145A6',
+    backgroundColor: palette.blue,
     borderRadius: 12,
     marginRight: 12,
   },
   text: {
     fontSize: 16,
-    color: '#666',
-    borderBottomColor: '#666',
+    color: palette.gray,
+    borderBottomColor: palette.gray,
   },
   block: {
     height: 280,
