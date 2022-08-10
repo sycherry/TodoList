@@ -6,14 +6,10 @@ import { ItemType } from '../models/ItemType';
 import { FontAwesome } from '@expo/vector-icons';
 import { AddAndUpdate } from '../components/addAndUpdate'
 import { styles } from './styles';
+import { Todo } from '../models/todoType';
+import { Mode } from '../models/modeType';
 
 export const Home: FC<HomeProps> = () => {
-
-  type Todo = {
-    id: number;
-    title: string;
-  }
-  type Mode = "ADD" | "UPDATE";
 
   const [data, setData] = useState<Todo[]>(initialData)
   const [text, setText] = useState<string>("")
