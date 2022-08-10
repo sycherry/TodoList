@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Alert, Text, View, TouchableOpacity, Button, Linking, Platform } from 'react-native';
+import { Text, View, TouchableOpacity, Button, Linking, Platform } from 'react-native';
 import { AuthenticationProps } from './Authentication.props';
 import * as LocalAuthentication from "expo-local-authentication";
 import { styles } from './Authentication.styles';
@@ -11,11 +11,7 @@ export const Authentication: FC<AuthenticationProps> = ({ navigation }) => {
 
     // When no enrolled authentication in deveice, link to settings
     if (SecurityLevel === 0) {
-      return Alert.alert(
-        'No enrolled authentication',
-        'Please set authentication',
-        [{ text: "OK", onPress: () => handleSetPasscode() }]
-      );
+      handleSetPasscode()
     } else {
       // When enrolled non-biometric authentication or biometric authentication
       // move to authentication
@@ -33,12 +29,12 @@ export const Authentication: FC<AuthenticationProps> = ({ navigation }) => {
       // I tested using physical devices.
       Platform.OS === 'ios'
         ? Linking.openURL('App-Prefs:TOUCHID_PASSCODE')
-        : await Linking.sendIntent("android.settings.BIOMETRIC_ENROLL");
+        : Linking.sendIntent("android.settings.BIOMETRIC_ENROLL");
     } else {
       // When a face or fingerprint scanner is not available on the device, link to setting page
       Platform.OS === 'ios'
         ? Linking.openURL('App-Prefs:')
-        : await Linking.sendIntent("android.settings.SECURITY_SETTINGS");
+        : Linking.sendIntent("android.settings.SECURITY_SETTINGS");
     }
   }
 
