@@ -48,4 +48,21 @@ export const styles = StyleSheet.create({
   block: {
     height: 280,
   },
+  remove: {
+    paddingVertical: 18,
+    paddingHorizontal: 20,
+    backgroundColor: "#ddd",
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  overlay: {
+    zIndex:1,
+    backgroundColor: palette.black,
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    opacity: 0.6,
+  },
 });

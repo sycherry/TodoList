@@ -1,13 +1,14 @@
 import React, { FC, useState, useEffect } from 'react'
-import { TouchableOpacity, SafeAreaView, Text, View, FlatList, ListRenderItemInfo } from 'react-native';
+import { Platform, KeyboardAvoidingView, TouchableOpacity, SafeAreaView, Text, View, FlatList, ListRenderItemInfo } from 'react-native';
 import { HomeProps } from './home.props';
 import { initialData } from './initialData';
 import { ItemType } from '../models/ItemType';
 import { FontAwesome } from '@expo/vector-icons';
 import { AddAndUpdate } from '../components/addAndUpdate'
-import { styles } from './styles';
+import { styles } from './home.styles';
 import { Todo } from '../models/todoType';
 import { Mode } from '../models/modeType';
+import { palette } from "../styles/color"
 
 export const Home: FC<HomeProps> = () => {
 
@@ -59,7 +60,7 @@ export const Home: FC<HomeProps> = () => {
   }
 
   const renderItem = ({ item }: ListRenderItemInfo<ItemType>) => (
-    <TouchableOpacity testID="list"  disabled={updateDisabled} onPress={() => updateTodoList(item.id)} >
+    <TouchableOpacity testID="list" disabled={updateDisabled} onPress={() => updateTodoList(item.id)} >
       <View style={styles.listOuter}>
 
         <View style={styles.listLeft}>
@@ -69,38 +70,41 @@ export const Home: FC<HomeProps> = () => {
           </View>
         </View>
 
-        <TouchableOpacity disabled={updateDisabled} testID="delete" onPress={() => removeTodoList(item.id)} >
-          <Text><FontAwesome name="trash-o" size={24} color="#999" /></Text>
+        <TouchableOpacity style={styles.remove}disabled={updateDisabled} testID="delete" onPress={() => removeTodoList(item.id)} >
+          <Text><FontAwesome name="trash-o" size={28} color={palette.gray} /></Text>
         </TouchableOpacity>
 
       </View>
-
     </TouchableOpacity>
   )
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.row}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      <SafeAreaView style={styles.container}>
+        {updateDisabled && <View style={styles.overlay}></View>}
 
-        <View style={styles.titleOuter}><Text style={styles.title}>TODO:</Text></View>
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
-          ListFooterComponent={<View style={styles.block} />}
+
+        <View style={styles.row}>
+          <View style={styles.titleOuter}><Text style={styles.title}>TODO:</Text></View>
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.id.toString()}
+            ListFooterComponent={<View style={styles.block} />}
+          />
+        </View>
+
+        <AddAndUpdate
+          text={text}
+          onChangeText={onChangeText}
+          disabled={buttonDisabled}
+          button={button}
+          addAndUpdateTodoList={addAndUpdateTodoList}
         />
 
-      </View>
-
-      <AddAndUpdate
-        text={text}
-        onChangeText={onChangeText}
-        disabled={buttonDisabled}
-        button={button}
-        addAndUpdateTodoList={addAndUpdateTodoList}
-      />
-
-    </SafeAreaView>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
-
