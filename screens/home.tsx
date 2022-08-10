@@ -1,14 +1,14 @@
 import React, { FC, useState, useEffect } from 'react'
 import { Platform, KeyboardAvoidingView, TouchableOpacity, SafeAreaView, Text, View, FlatList, ListRenderItemInfo } from 'react-native';
-import { HomeProps } from './home.props';
-import { initialData } from './initialData';
+import { HomeProps } from './Home.props';
+import { initialData } from './InitialData';
 import { ItemType } from '../models/ItemType';
 import { FontAwesome } from '@expo/vector-icons';
-import { AddAndUpdate } from '../components/addAndUpdate'
-import { styles } from './home.styles';
-import { Todo } from '../models/todoType';
-import { Mode } from '../models/modeType';
-import { palette } from "../styles/color"
+import { AddAndUpdate } from '../components/AddAndUpdate'
+import { styles } from './Home.styles';
+import { Todo } from '../models/TodoType';
+import { Mode } from '../models/ModeType';
+import { palette } from "../styles/Color"
 
 export const Home: FC<HomeProps> = () => {
 

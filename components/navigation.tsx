@@ -1,8 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { Authentication } from "../screens/authentication";
-import { Home } from "../screens/home";
+import { Authentication } from "../screens/Authentication";
+import { Home } from "../screens/Home";
 
 export type NavigatorParamList = {
   Authentication: any

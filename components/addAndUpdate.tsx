@@ -1,7 +1,7 @@
 import { TouchableOpacity, Text, View, TextInput } from 'react-native';
-import { AddAndUpdateProps } from './addAndUpdate.props'
-import { styles } from './addAndUpdate.styles';
-import { palette } from "../styles/color"
+import { AddAndUpdateProps } from './AddAndUpdate.props'
+import { styles } from './AddAndUpdate.styles';
+import { palette } from "../styles/Color"
 
 export function AddAndUpdate(props: AddAndUpdateProps) {
     const { text, disabled, button, addAndUpdateTodoList, onChangeText } = props

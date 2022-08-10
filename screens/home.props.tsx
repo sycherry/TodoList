@@ -1,4 +1,4 @@
-import { NavigatorParamList } from "../components/navigation";
+import { NavigatorParamList } from "../components/Navigation";
 import { StackScreenProps } from "@react-navigation/stack";
 
 export type HomeProps = StackScreenProps<NavigatorParamList, "Home">;

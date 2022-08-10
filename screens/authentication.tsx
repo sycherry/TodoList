@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { Alert, Text, View, TouchableOpacity, Button, Linking, Platform } from 'react-native';
-import { AuthenticationProps } from './authentication.props';
+import { AuthenticationProps } from './Authentication.props';
 import * as LocalAuthentication from "expo-local-authentication";
-import { styles } from './authentication.styles';
+import { styles } from './Authentication.styles';
 
 export const Authentication: FC<AuthenticationProps> = ({ navigation }) => {
 

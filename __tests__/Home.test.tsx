@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render } from '@testing-library/react-native'
-import { Home } from "../screens/home";
+import { Home } from "../screens/Home";
 import '@testing-library/jest-native/extend-expect';
 
 describe("Home screens test", () => {
