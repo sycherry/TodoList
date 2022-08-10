@@ -3,20 +3,28 @@ import { fireEvent, render } from '@testing-library/react-native'
 import { Home } from "../screens/Home";
 import '@testing-library/jest-native/extend-expect';
 
+const createTestProps = (props: Object) => ({
+  navigation: {
+    navigate: jest.fn()
+  },
+  ...props
+});
+
 describe("Home screens test", () => {
+  let props: any;
+  props = createTestProps({});
 
   it("When input is empty, the button desabled", async () => {
-    const { getByTestId } = render(<Home />)
+    const { getByTestId } = render(<Home {...props} />)
     const text = ''
     const input = getByTestId('input')
     fireEvent.changeText(input, text)
     const button = getByTestId('button')
-
     expect(button).toBeDisabled
   });
 
   it("User enters text in input, the button enabled", async () => {
-    const { getByTestId } = render(<Home />)
+    const { getByTestId } = render(<Home {...props} />)
     const text = 'Forth Item'
     const input = getByTestId('input')
     fireEvent.changeText(input, text)
@@ -26,7 +34,7 @@ describe("Home screens test", () => {
   });
 
   it("User create one item", async () => {
-    const { getByTestId, getAllByTestId } = render(<Home />)
+    const { getByTestId, getAllByTestId } = render(<Home {...props} />)
     const text = 'Forth Item'
     const input = getByTestId('input')
     const button = getByTestId('button')
@@ -40,7 +48,7 @@ describe("Home screens test", () => {
   });
 
   it("User create two items", async () => {
-    const { getByTestId, getAllByTestId } = render(<Home />)
+    const { getByTestId, getAllByTestId } = render(<Home {...props} />)
     const text = 'Forth Item'
     const text2 = 'Fifth Item'
     const input = getByTestId('input')
@@ -61,15 +69,15 @@ describe("Home screens test", () => {
   });
 
   it("User remove first item", async () => {
-    const { getAllByTestId, queryByText } = render(<Home />)
+    const { getAllByTestId, queryByText } = render(<Home {...props} />)
     const removeButton = getAllByTestId('delete')[0]
     fireEvent.press(removeButton);
-    
+
     expect(queryByText('First Item')).toBeNull();
   });
 
   it("User create new item and then remove it", async () => {
-    const { getByTestId, getAllByTestId, queryByText } = render(<Home />)
+    const { getByTestId, getAllByTestId, queryByText } = render(<Home {...props} />)
     const text = 'Forth Item'
     const input = getByTestId('input')
     fireEvent.changeText(input, text)
@@ -82,7 +90,7 @@ describe("Home screens test", () => {
   });
 
   it("User update first item", async () => {
-    const { getAllByTestId, getByTestId } = render(<Home />)
+    const { getAllByTestId, getByTestId } = render(<Home {...props} />)
 
     const firstList = getAllByTestId('list')[0]
     fireEvent.press(firstList)
@@ -102,7 +110,7 @@ describe("Home screens test", () => {
 
 
   it("User create and forth item and update it", async () => {
-    const { getByTestId, getAllByTestId, getByText } = render(<Home />)
+    const { getByTestId, getAllByTestId } = render(<Home {...props} />)
 
     const text = 'Forth Item'
     const input = getByTestId('input')
