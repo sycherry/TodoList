@@ -109,5 +109,3 @@ export const Home: FC<HomeProps> = () => {
     </KeyboardAvoidingView>
   );
 };
-
-
