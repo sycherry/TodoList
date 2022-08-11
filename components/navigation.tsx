@@ -1,16 +1,16 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, StackNavigationOptions } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { Authentication } from "../screens/Authentication";
 import { Home } from "../screens/Home";
 
 export type NavigatorParamList = {
-  Authentication: any
-  Home: any
-}
+  Authentication: any;
+  Home: any;
+};
 export default function RootNavigation() {
   const Stack = createStackNavigator<NavigatorParamList>();
-  const screenOptions = {
+  const screenOptions: StackNavigationOptions = {
     headerShown: false,
   };
   return (
@@ -21,4 +21,4 @@ export default function RootNavigation() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};

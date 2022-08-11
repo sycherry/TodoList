@@ -1,77 +1,79 @@
-import React, { FC, useState, useEffect } from 'react'
-import { Platform, KeyboardAvoidingView, TouchableOpacity, SafeAreaView, Text, View, FlatList, ListRenderItemInfo } from 'react-native';
-import { HomeProps } from './Home.props';
-import { initialData } from './InitialData';
-import { ItemType } from '../models/ItemType';
-import { FontAwesome } from '@expo/vector-icons';
-import { AddAndUpdate } from '../components/AddAndUpdate'
-import { styles } from './Home.styles';
-import { Todo } from '../models/TodoType';
-import { Mode } from '../models/ModeType';
-import { palette } from "../styles/Color"
+import React, { FC, useState, useEffect } from "react";
+import { Platform, KeyboardAvoidingView, TouchableOpacity, SafeAreaView, Text, View, FlatList, ListRenderItemInfo } from "react-native";
+import { HomeProps } from "./Home.props";
+import { initialData } from "./InitialData";
+import { FontAwesome } from "@expo/vector-icons";
+import { InputPanel } from "../components/InputPanel/InputPanel"
+import { styles } from "./Home.styles";
+import { TodoItem } from "../models/TodoItem";
+import { InputMode } from "../models/InputMode";
+import { palette } from "../styles/Color";
 
 export const Home: FC<HomeProps> = () => {
 
-  const [data, setData] = useState<Todo[]>(initialData)
-  const [text, setText] = useState<string>("")
-  const [button, setButton] = useState<Mode>("ADD")
-  const [updateID, setUpdateID] = useState<number>(0)
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
-  const [updateDisabled, setUpdateDisabled] = useState<boolean>(false)
+  const [data, setData] = useState<TodoItem[]>(initialData);
+  const [inputPanelText, setInputPanelText] = useState<string>("");
+  const [inputPanelButtonText, setInputPanelButtonText] = useState<InputMode>(InputMode.ADD);
+  const [inputPanelButtonDisabled, setInputPanelButtonDisabled] = useState<boolean>(true);
+  const [updateID, setUpdateID] = useState<string>("");
+  const [updateDisabled, setUpdateDisabled] = useState<boolean>(false);
 
   useEffect(() => {
-    setButtonDisabled(!text)
-  }, [text])
+    setInputPanelButtonDisabled(!inputPanelText);
+  }, [inputPanelText]);
 
   const onChangeText = (text: any) => {
-    setText(text)
-  }
+    setInputPanelText(text);
+  };
+
+  const generateId = () => {
+    return Date.now().toString() + "_" + (Math.random() * 1e6).toFixed(0).toString();
+  };
 
   const addAndUpdateTodoList = () => {
-    if (button === "ADD") {
-      const specificId = Number(Date.now() + (Math.random() * 1e6).toFixed(0))
-      setData([...data, { title: text, id: specificId }])
+    if (inputPanelButtonText === InputMode.ADD) {
+      setData([...data, { title: inputPanelText, id: generateId() }]);
     } else {
       const newData = data.map(item => {
         if (item.id == updateID) {
-          return { title: text, id: updateID }
+          return { title: inputPanelText, id: updateID };
         }
         return item;
       });
       setData(newData);
-      setButton("ADD")
-      setUpdateDisabled(false)
+      setInputPanelButtonText(InputMode.ADD);
+      setUpdateDisabled(false);
     }
-    setText("")
-  }
+    setInputPanelText("");
+  };
 
-  const removeTodoList = (id: number) => {
-    setData(data => data.filter((data) => data.id !== id))
-  }
+  const removeTodoList = (id: string) => {
+    setData(data => data.filter((data) => data.id !== id));
+  };
 
-  const updateTodoList = (id: number) => {
+  const updateTodoList = (id: string) => {
     const item = data.find((data) => data.id == id);
     if (item) {
-      setButton("UPDATE")
-      setText(item.title)
-      setUpdateID(item.id)
-      setUpdateDisabled(true)
-    }
-  }
+      setInputPanelButtonText(InputMode.UPDATE);
+      setInputPanelText(item.title);
+      setUpdateID(item.id);
+      setUpdateDisabled(true);
+    };
+  };
 
-  const renderItem = ({ item }: ListRenderItemInfo<ItemType>) => (
+  const renderItem = ({ item }: ListRenderItemInfo<TodoItem>) => (
     <TouchableOpacity testID="list" disabled={updateDisabled} onPress={() => updateTodoList(item.id)} >
       <View style={styles.listOuter}>
 
         <View style={styles.listLeft}>
           <View style={styles.textOuter}>
-            <View style={styles.textIcon}></View>
-            <Text testID="text" style={styles.text}>{item.title}</Text>
+            <View style={styles.circleIcon}></View>
+            <Text testID="text" style={styles.itemText}>{item.title}</Text>
           </View>
         </View>
 
-        <TouchableOpacity style={styles.remove}disabled={updateDisabled} testID="delete" onPress={() => removeTodoList(item.id)} >
-          <Text><FontAwesome name="trash-o" size={28} color={palette.gray} /></Text>
+        <TouchableOpacity style={styles.removeItem} disabled={updateDisabled} testID="delete" onPress={() => removeTodoList(item.id)} >
+          <FontAwesome name="trash-o" size={28} color={palette.gray} />
         </TouchableOpacity>
 
       </View>
@@ -83,28 +85,29 @@ export const Home: FC<HomeProps> = () => {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <SafeAreaView style={styles.container}>
-        {updateDisabled && <View style={styles.overlay}></View>}
-
+        {updateDisabled && <View style={styles.updateOverlay}></View>}
 
         <View style={styles.row}>
           <View style={styles.titleOuter}><Text style={styles.title}>TODO:</Text></View>
           <FlatList
             data={data}
             renderItem={renderItem}
-            keyExtractor={item => item.id.toString()}
-            ListFooterComponent={<View style={styles.block} />}
+            keyExtractor={item => item.id}
+            ListFooterComponent={<View style={styles.listFooterBlock} />}
           />
         </View>
 
-        <AddAndUpdate
-          text={text}
+        <InputPanel
+          inputPanelText={inputPanelText}
           onChangeText={onChangeText}
-          disabled={buttonDisabled}
-          button={button}
+          inputPanelButtonText={inputPanelButtonText}
+          inputPanelButtonDisabled={inputPanelButtonDisabled}
           addAndUpdateTodoList={addAndUpdateTodoList}
         />
 
       </SafeAreaView>
     </KeyboardAvoidingView>
   );
-}
+};
+
+

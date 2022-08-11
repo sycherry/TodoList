@@ -1,8 +1,8 @@
 import React from "react";
-import { fireEvent, render, waitFor } from '@testing-library/react-native'
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { getEnrolledLevelAsync, authenticateAsync, hasHardwareAsync } from "expo-local-authentication";
 import { Authentication } from "../screens/Authentication";
-import '@testing-library/jest-native/extend-expect';
+import "@testing-library/jest-native/extend-expect";
 
 jest.mock("expo-local-authentication", () => ({
   authenticateAsync: jest.fn(),
@@ -20,26 +20,26 @@ const createTestProps = (props: Object) => ({
   ...props
 });
 
-describe("Authetication screens test", () => {
+describe("Authetication screen", () => {
   let props: any;
   props = createTestProps({});
 
-  it("When user click button, check security level", async () => {
-    const { getByTestId } = render(<Authentication {...props} />)
-    const button = getByTestId('button')
-    fireEvent.press(button)
+  it("should check the security level when the user clicks the button", async () => {
+    const { getByTestId } = render(<Authentication {...props} />);
+    const settingsButton = getByTestId("settingsButton");
+    fireEvent.press(settingsButton);
     expect(getEnrolledLevelAsync).toHaveBeenCalledTimes(1);
     await waitFor(() => {
-      expect(hasHardwareAsync).toHaveBeenCalledTimes(1)
-      expect(authenticateAsync).toHaveBeenCalledTimes(0)
+      expect(hasHardwareAsync).toHaveBeenCalledTimes(1);
+      expect(authenticateAsync).toHaveBeenCalledTimes(0);
     });
   });
 
-  it('When security level is 2 and click button, link to authenticate screen', async () => {
-    const { getByTestId, toJSON } = render(<Authentication {...props} />);
-    const button = getByTestId('button')
+  it("should link to authenticate screen when security level is FACIAL_RECOGNITION (2)", async () => {
+    const { getByTestId } = render(<Authentication {...props} />);
+    const settingsButton = getByTestId("settingsButton");
     getEnrolledLevelAsync();
-    fireEvent.press(button)
+    fireEvent.press(settingsButton);
     await waitFor(() => expect(authenticateAsync).toHaveBeenCalledTimes(1));
   });
 

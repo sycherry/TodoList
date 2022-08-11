@@ -1,24 +1,24 @@
-import { StyleSheet } from 'react-native';
-import { palette } from "../styles/Color"
+import { StyleSheet } from "react-native";
+import { palette } from "../styles/Color";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    alignItems: "center",
+    justifyContent: "flex-end",
     paddingBottom: 60
   },
-  title: {
+  settingsTitle: {
     fontSize: 24,
     marginBottom: 28,
   },
-  button: {
+  settingsButton: {
     backgroundColor: palette.blue,
     paddingHorizontal: 40,
     paddingVertical: 18,
     borderRadius: 30
   },
-  buttonText: {
+  settingsButtonText: {
     color: palette.white,
     fontSize: 20,
     fontWeight: "bold"
