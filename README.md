@@ -1,4 +1,5 @@
-# TodoList
+# TodoList 
+Typscript / ReactNative / Expo
 
 Run tests using `npm test`.
 
