@@ -1,5 +1,5 @@
 # TodoList 
-Typscript / ReactNative / Expo
+Typscript / ReactNative / LocalAuthentication
 
 Run tests using `npm test`.
 
