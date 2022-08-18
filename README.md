@@ -1,8 +1,9 @@
 # TodoList 
-Typscript / ReactNative / LocalAuthentication
+This is Todo list sample code
 
-Run tests using `npm test`.
+Technology: Typscript, ReactNative, LocalAuthentication
 
+Run tests using `npm test`
 Run app using `npm start`
 
-🌈😍🌺🧚‍♂️
+🌈
