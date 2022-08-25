@@ -24,11 +24,11 @@ Run `npm test`
 
 ## Screenshort
 
-Authentication screen
+<p>Authentication screen</p>
 <img src="/assets/screenshot1.png" alt="authentication screen" width="300" height="auto"/>
-Passcord screen
+<p>Passcord screen</p>
 <img src="/assets/screenshot2.png" alt="passcord screen" width="300" height="auto"/>
-Todo list screen
+<p>Todo list screen</p>
 <img src="/assets/screenshot3.png" alt="todo screen" width="300" height="auto"/>
 
 ## Caveats
