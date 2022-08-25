@@ -34,11 +34,7 @@ Create an issue in the Github repository
 
 ## Authors
 GitHub @sycherry
- 
- <div style="width: 60%; height: 60%">
-![screenshot1](/assets/screenshot1.png?raw=true "Screenshort")
-![screenshot2](/assets/screenshot1.png?raw=true "Screenshort")
-![screenshot3](/assets/screenshot1.png?raw=true "Screenshort")
-</div>
 
-<img src="/assets/screenshot1.png" width="400" height="auto"/>
+<img src="/assets/screenshot1.png" alt="authentication screen" width="300" height="auto"/>
+<img src="/assets/screenshot2.png" alt="passcord screen" width="300" height="auto"/>
+<img src="/assets/screenshot2.png" alt="todo screen" width="300" height="auto"/>
