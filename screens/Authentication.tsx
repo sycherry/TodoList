@@ -25,7 +25,7 @@ export const Authentication: FC<AuthenticationProps> = ({ navigation }) => {
 
     // When a face or fingerprint scanner is available on the device, link to setting face or fingerprint.
     if (isBiometricAvailable) {
-      // We can"t provision (can"t enable passcode lock) in xcode IOS Simulator.
+      // We can"t provision (can't enable passcode lock) in xcode IOS Simulator.
       // I tested using physical devices.
       Platform.OS === "ios"
         ? Linking.openURL("App-Prefs:TOUCHID_PASSCODE")
