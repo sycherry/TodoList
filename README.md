@@ -35,6 +35,10 @@ Create an issue in the Github repository
 ## Authors
 GitHub @sycherry
  
+ <div style="width: 60%; height: 60%">
 ![screenshot1](/assets/screenshot1.png?raw=true "Screenshort")
 ![screenshot2](/assets/screenshot1.png?raw=true "Screenshort")
 ![screenshot3](/assets/screenshot1.png?raw=true "Screenshort")
+</div>
+
+<img src="/assets/screenshot1.png" width="100" height="100"/>
