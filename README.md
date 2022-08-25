@@ -41,4 +41,4 @@ GitHub @sycherry
 ![screenshot3](/assets/screenshot1.png?raw=true "Screenshort")
 </div>
 
-<img src="/assets/screenshot1.png" width="100" height="100"/>
+<img src="/assets/screenshot1.png" width="400" height="auto"/>
