@@ -1,10 +1,10 @@
 # React Native Todo List App
 
-This project is a simple mobile app to manage to-dos🌈
+Simple todo list utilizing React Native and Expo to design and create a simple mobile app🌈
 
 ## Features
 
-- Main tech stack: React Native, TypeScript, Expo, Expo Local Authentication, Native Base UI, react-navigation (stack navigation)
+- Main tech stack: React Native, TypeScript, Expo, Jest, Expo Local Authentication, Native Base UI, react-navigation (stack navigation)
 - Users can add a todo item
 - Users can remove todo item
 - Users can update todo item
@@ -32,3 +32,6 @@ Run `npm test`
 
 Create an issue in the Github repository
 
+## Authors
+GitHub @sycherry
+ 
