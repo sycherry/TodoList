@@ -22,6 +22,15 @@ Simple todo list utilizing React Native and Expo to design and create a simple m
 
 Run `npm test` 
 
+## Screenshort
+
+Authentication screen
+<img src="/assets/screenshot1.png" alt="authentication screen" width="300" height="auto"/>
+Passcord screen
+<img src="/assets/screenshot2.png" alt="passcord screen" width="300" height="auto"/>
+Todo list screen
+<img src="/assets/screenshot3.png" alt="todo screen" width="300" height="auto"/>
+
 ## Caveats
 
 - This error happens in ios simulator, but it's no problem:
@@ -34,7 +43,3 @@ Create an issue in the Github repository
 
 ## Authors
 GitHub @sycherry
-
-<img src="/assets/screenshot1.png" alt="authentication screen" width="300" height="auto"/>
-<img src="/assets/screenshot2.png" alt="passcord screen" width="300" height="auto"/>
-<img src="/assets/screenshot2.png" alt="todo screen" width="300" height="auto"/>
