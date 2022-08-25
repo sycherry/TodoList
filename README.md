@@ -35,3 +35,6 @@ Create an issue in the Github repository
 ## Authors
 GitHub @sycherry
  
+![screenshot1](/assets/screenshot1.png?raw=true "Screenshort")
+![screenshot2](/assets/screenshot1.png?raw=true "Screenshort")
+![screenshot3](/assets/screenshot1.png?raw=true "Screenshort")
