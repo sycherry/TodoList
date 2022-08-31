@@ -16,7 +16,7 @@ Simple todo list utilizing React Native and Expo to design and create a simple m
 - Run `nvm use 16` (Please use node 16)
 - To install expo : `npm install --global expo-cli`(if you don’t have Expo installed already)
 - Run `npm i` (will install the dependencies)
-- Run `npx expo start` 
+- Run `npx expo start` (Please use npx)
 
 ## Test
 
