@@ -13,9 +13,9 @@ Simple todo list utilizing React Native and Expo to design and create a simple m
 
 - Install [Node.js](https://nodejs.org/en/download/) and [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
 - Fork/Clone this project
-- Run `nvm use 16` (✅Please use **node 16**)
+- Run `nvm use 18` (Please use **node 18**)
 - Run `npm i` (will install the dependencies)
-- Run `npx expo start` (✅Please use **npx**)
+- Run `npx expo start` (Please use **npx**)
 
 ## Test
 
