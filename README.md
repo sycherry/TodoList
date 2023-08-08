@@ -16,7 +16,7 @@ Simple todo list utilizing React Native and Expo to design and create a simple m
 - Run `nvm use 18` (Please use **node 18**)
 - Run `npm i` (will install the dependencies)
 - Run `npx expo start` (Please use **npx**)
-
+- You can use anynumber passcode forexsample: 0000
 ## Test
 
 Run `npm test` 
